@@ -1,0 +1,45 @@
+
+.button {
+    width: 100px;
+    padding: 14px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button.primary {
+    background: #6a5bff;
+    color: #ffffff;
+}
+
+button.secondary {
+    --c: #6a5bff;
+    --b: 2px;
+    --g: 5px;
+    --_g: #0000 25%, var(--c) 0;
+    background:
+        conic-gradient(from 180deg at top var(--b) right var(--b), var(--_g)) var(--_i, 200%) 0 /200% var(--_i, var(--b)) no-repeat,
+        conic-gradient(at bottom var(--b) left var(--b), var(--_g)) 0 var(--_i, 200%)/var(--_i, var(--b)) 200% no-repeat;
+    transition: .3s, background-position .3s .3s;
+    cursor: pointer;
+}
+
+
+.btn {
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    margin-top: 20px;
+
+    .createBtn {
+        // background-color: #ededed;
+        margin-top: 10px;
+    }
+}
+
+.secondary:hover {
+    --_i: 100%;
+    transition: .3s, background-size .3s .3s;
+}
