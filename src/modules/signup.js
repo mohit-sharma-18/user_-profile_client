@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import callApi from '../utility/callAPI'
 import Toast from '../components/Toast'
 import '../style/signup.scss'
+import Loader from '../components/Loader'
 
 
 const Signup = () => {
@@ -82,33 +83,35 @@ const Signup = () => {
     return (
 
         <>
-            <div className="signup_comp">
-                {showToast && <Toast toastHeader={apiData.toastHeader} toastMsg={apiData.toastMsg} toastColor={apiData.toastColor} toastIcon={apiData.toastIcon} />}
-                <div className="header">
-                    <div className="logo">
-                    </div>
-                    <div className="signUpDetails">
-                        <h1>
-                            Create an account
-                        </h1>
-                        <p>Create an account so you can explore all the features</p>
-                    </div>
-                    <div className="formDetails">
-                        <form onSubmit={handlerSubmit}>
-                            <div className="formElements">
-                                <TextBox id="username" name="username" className={`username ${fieldError.username ? 'error' : ''}`} placeholder="Username" value={username} onChange={handlerInput}></TextBox>
-                                <TextBox id="email" name="email" className={`email ${fieldError.email ? 'error' : ''}`} placeholder="Email" value={email} onChange={handlerInput}></TextBox>
-                                <TextBox type="password" id="password" name="password" className={`password  ${fieldError.password ? 'error' : ''}`} placeholder="Password" value={password} onChange={handlerInput}></TextBox>
-                                <TextBox  type="password" id="confrimPass" name="confirmPass" className={`confirmPass  ${fieldError.confirmPass ? 'error' : ''}`} placeholder="Confirm Password" value={confirmPass} onChange={handlerInput}></TextBox>
-                            </div>
-                            <div className="btn">
-                                <Button type="submit" name="Sign Up" className="primary" style={{ width: "325px" }}></Button>
-                                <Link to='/login'> <Button name="Already have an account" className="secondary createBtn" style={{ width: "325px" }}></Button></Link>
-                            </div>
-                        </form>
-                    </div>
+            {loader ? <Loader loaderMsg="Please wait while we finish setting up your account" /> :
+                <div className="signup_comp">
+                    {showToast && <Toast toastHeader={apiData.toastHeader} toastMsg={apiData.toastMsg} toastColor={apiData.toastColor} toastIcon={apiData.toastIcon} />}
+                    <div className="header">
+                        <div className="logo">
+                        </div>
+                        <div className="signUpDetails">
+                            <h1>
+                                Create an account
+                            </h1>
+                            <p>Create an account so you can explore all the features</p>
+                        </div>
+                        <div className="formDetails">
+                            <form onSubmit={handlerSubmit}>
+                                <div className="formElements">
+                                    <TextBox id="username" name="username" className={`username ${fieldError.username ? 'error' : ''}`} placeholder="Username" value={username} onChange={handlerInput}></TextBox>
+                                    <TextBox id="email" name="email" className={`email ${fieldError.email ? 'error' : ''}`} placeholder="Email" value={email} onChange={handlerInput}></TextBox>
+                                    <TextBox type="password" id="password" name="password" className={`password  ${fieldError.password ? 'error' : ''}`} placeholder="Password" value={password} onChange={handlerInput}></TextBox>
+                                    <TextBox type="password" id="confrimPass" name="confirmPass" className={`confirmPass  ${fieldError.confirmPass ? 'error' : ''}`} placeholder="Confirm Password" value={confirmPass} onChange={handlerInput}></TextBox>
+                                </div>
+                                <div className="btn">
+                                    <Button type="submit" name="Sign Up" className="primary" style={{ width: "325px" }}></Button>
+                                    <Link to='/login'> <Button name="Already have an account" className="secondary createBtn" style={{ width: "325px" }}></Button></Link>
+                                </div>
+                            </form>
+                        </div>
+                    </div >
                 </div >
-            </div >
+            }
         </>
     )
 }

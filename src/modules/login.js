@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import callApi from '../utility/callAPI'
 import Toast from '../components/Toast'
 import '../style/login.scss'
+import Loader from '../components/Loader'
 
 const Login = () => {
     const [apiData, setApidata] = useState([])
@@ -48,32 +49,34 @@ const Login = () => {
 
     return (
         <>
-            <div className="login_comp">
-                {showToast && <Toast toastHeader={apiData.toastHeader} toastMsg={apiData.toastMsg} toastColor={apiData.toastColor} toastIcon={apiData.toastIcon} />}
-                <div className="header">
-                    <div className="logo">
-                    </div>
-                    <div className="loginDetails">
-                        <h1>
-                            Login here
-                        </h1>
-                        <p>Welcome back!</p>
-                    </div>
-                    <div className="formDetails">
-                        <form onSubmit={handlerSubmit}>
-                            <div className="formElements">
-                                <TextBox id="emailInput" type="text" name="email" placeholder="Enter your email address" value={email} onChange={handlerChange}></TextBox>
-                                <TextBox id="passwordInput" type="password" name="password" placeholder="Enter password" value={password} onChange={handlerChange}></TextBox>
-                                {/* <div className='forgotPass'><a href='#' >Forgot your password?</a></div> */}
-                            </div>
-                            <div className="btn">
-                                <Button type="submit" name="Sign in" className="primary" style={{ width: "325px" }}></Button>
-                                <Link to="/signup"> <Button name="Create new account" className="secondary createBtn" style={{ width: "325px" }}></Button></Link>
-                            </div>
-                        </form>
+            {loader ? <Loader loaderMsg="Loading" /> :
+                <div className="login_comp">
+                    {showToast && <Toast toastHeader={apiData.toastHeader} toastMsg={apiData.toastMsg} toastColor={apiData.toastColor} toastIcon={apiData.toastIcon} />}
+                    <div className="header">
+                        <div className="logo">
+                        </div>
+                        <div className="loginDetails">
+                            <h1>
+                                Login here
+                            </h1>
+                            <p>Welcome back!</p>
+                        </div>
+                        <div className="formDetails">
+                            <form onSubmit={handlerSubmit}>
+                                <div className="formElements">
+                                    <TextBox id="emailInput" type="text" name="email" placeholder="Enter your email address" value={email} onChange={handlerChange}></TextBox>
+                                    <TextBox id="passwordInput" type="password" name="password" placeholder="Enter password" value={password} onChange={handlerChange}></TextBox>
+                                    {/* <div className='forgotPass'><a href='#' >Forgot your password?</a></div> */}
+                                </div>
+                                <div className="btn">
+                                    <Button type="submit" name="Sign in" className="primary" style={{ width: "325px" }}></Button>
+                                    <Link to="/signup"> <Button name="Create new account" className="secondary createBtn" style={{ width: "325px" }}></Button></Link>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </>
     )
 }
