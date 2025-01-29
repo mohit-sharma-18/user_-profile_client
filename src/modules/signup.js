@@ -98,8 +98,8 @@ const Signup = () => {
                             <div className="formElements">
                                 <TextBox id="username" name="username" className={`username ${fieldError.username ? 'error' : ''}`} placeholder="Username" value={username} onChange={handlerInput}></TextBox>
                                 <TextBox id="email" name="email" className={`email ${fieldError.email ? 'error' : ''}`} placeholder="Email" value={email} onChange={handlerInput}></TextBox>
-                                <TextBox id="password" name="password" className={`password  ${fieldError.password ? 'error' : ''}`} placeholder="Password" value={password} onChange={handlerInput}></TextBox>
-                                <TextBox id="confrimPass" name="confirmPass" className={`confirmPass  ${fieldError.confirmPass ? 'error' : ''}`} placeholder="Confirm Password" value={confirmPass} onChange={handlerInput}></TextBox>
+                                <TextBox type="password" id="password" name="password" className={`password  ${fieldError.password ? 'error' : ''}`} placeholder="Password" value={password} onChange={handlerInput}></TextBox>
+                                <TextBox  type="password" id="confrimPass" name="confirmPass" className={`confirmPass  ${fieldError.confirmPass ? 'error' : ''}`} placeholder="Confirm Password" value={confirmPass} onChange={handlerInput}></TextBox>
                             </div>
                             <div className="btn">
                                 <Button type="submit" name="Sign Up" className="primary" style={{ width: "325px" }}></Button>
