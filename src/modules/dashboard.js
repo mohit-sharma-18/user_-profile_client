@@ -10,6 +10,7 @@ const Dashboard = () => {
     const [apiData, setApiData] = useState([])
     const [toastData, setToastData] = useState([])
     const [showToast, setShowToast] = useState(false)
+    const [disabled, setDisabled] = useState('disabled')
     const [defaults, setDefaults] = useState({
         userData: '',
         userValue: '',
@@ -49,6 +50,7 @@ const Dashboard = () => {
         })
     }
     const handlerInput = (e) => {
+        e.target.value.length == 0 ? setDisabled('disabled') : setDisabled('')
         const { name, value } = e.target
         setDefaults((prev) => ({
             ...prev, [name]: value,
@@ -110,8 +112,8 @@ const Dashboard = () => {
                         <TextBox type="text" label="Key" value={userData} name="userData" className={`userData ${fieldError.userData ? 'error' : ''}`} onChange={handlerInput}></TextBox>
                         <TextBox type="text" label="value" value={userValue} name="userValue" className={`userValue ${fieldError.userValue ? 'error' : ''}`} onChange={handlerInput}></TextBox>
                         <div className="actionBtn">
-                            <Button type="submit" className="primary" name="Add More Data"></Button>
-                            <Button type="button" className="Secondary" name="Delete Specific Data" onClick={deleteData}></Button>
+                            <Button type="submit" className={`primary ${disabled}`} name="Add More Data"></Button>
+                            <Button type="button" className={`Secondary ${disabled}`} name="Delete Specific Data" onClick={deleteData}></Button>
                         </div>
                     </form>
                 </div>

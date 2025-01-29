@@ -139,6 +139,10 @@ body {
         transform: scale(1.03);
     }
 
+    button.disabled {
+        opacity: .4;
+        pointer-events: none;
+    }
 
     @media (max-width: 768px) {
         .expenseListContainer {
